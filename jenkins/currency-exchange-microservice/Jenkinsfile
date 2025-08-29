@@ -17,7 +17,7 @@ pipeline {
       }
     }
   }
-}
+
 post {
   always {
     echo 'I always run'
@@ -34,4 +34,5 @@ post {
   changed {
     echo 'I run when build status changes (success→fail or fail→success)'
   }
+}
 }
