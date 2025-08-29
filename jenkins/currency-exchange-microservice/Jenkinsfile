@@ -1,11 +1,37 @@
-node {
-	stage('Build') {
-		echo "Build"
-	}
-	stage('Test') {
-		echo "Test"
-	}
-	stage('Integration Test') {
-		echo "Integration Test"
-	}
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building...'
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+      }
+    }
+    stage('Integration Test') {
+      steps {
+        echo 'Running integration tests...'
+      }
+    }
+  }
+}
+post {
+  always {
+    echo 'I always run'
+  }
+  success {
+    echo 'I run only if build is successful'
+  }
+  failure {
+    echo 'I run only if build fails'
+  }
+  unstable {
+    echo 'I run when tests fail (unstable build)'
+  }
+  changed {
+    echo 'I run when build status changes (success→fail or fail→success)'
+  }
 }
